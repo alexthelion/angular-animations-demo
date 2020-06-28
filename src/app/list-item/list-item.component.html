@@ -4,7 +4,7 @@
    (swipeleft)="swipeRight = false;"><p [ngClass]="{'swipe-right': swipeRight}">{{value}}</p></a>
 
 <a class="list-group-item w-25 animate__animated animate__bounceInLeft" mdbWavesEffect *ngIf="swipeRight==true" mdbBtn
-   [@slideRight]="swipeRight"    [@slideLeft]="!swipeRight"
+   [@slideRight]="swipeRight"
    style="background-color: red; color:white; position: absolute; height: 100%; z-index: 100; top: 0; margin: 0;
     animation-duration: 0.5s;">
     <mdb-icon far icon="trash-alt"></mdb-icon>
