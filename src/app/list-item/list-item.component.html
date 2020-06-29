@@ -1,10 +1,9 @@
 <a class="list-group-item waves-light w-100" mdbWavesEffect
-   (swiperight)="swipeRight = true"
+   (swiperight)="changeState('swipeRight')"
    style="z-index: 50;"
-   (swipeleft)="swipeRight = false;"><p [ngClass]="{'swipe-right': swipeRight}">{{value}}</p></a>
+   (swipeleft)="changeState('swipeLeft')"><p [@changeState]="swipeDirection">{{value}}</p></a>
 
-<a class="list-group-item w-25 animate__animated animate__bounceInLeft" mdbWavesEffect *ngIf="swipeRight==true" mdbBtn
-   [@slideRight]="swipeRight"
+<a class="list-group-item w-25 animate__animated animate__slideInLeft" mdbWavesEffect *ngIf="swipeDirection === 'swipeRight'" mdbBtn
    style="background-color: red; color:white; position: absolute; height: 100%; z-index: 100; top: 0; margin: 0;
     animation-duration: 0.5s;">
     <mdb-icon far icon="trash-alt"></mdb-icon>

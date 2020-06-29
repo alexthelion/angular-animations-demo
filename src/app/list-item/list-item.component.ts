@@ -1,28 +1,35 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {animate, keyframes, query, stagger, style, transition, trigger} from '@angular/animations';
+import {animate, keyframes, query, stagger, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss'],
   animations: [
-    trigger('slideRight', [
-      transition('* => slideRight', animate(100, keyframes([
-          style({ left: '*', offset: 0 }),
-          style({ left: '0', offset: 1 }),
-        ])
-      ))
+    trigger('changeState', [
+      state('swipeRight', style({
+        transform: 'translateX(50px)'
+      })),
+      state('swipeLeft', style({
+        transform: 'translateX(0)'
+      })),
+      transition('*=>swipeRight', animate('200ms')),
+      transition('*=>swipeLeft', animate('400ms'))
     ])
   ]
 })
 export class ListItemComponent implements OnInit {
 
   @Input() value: string;
-  swipeRight = false;
+  swipeDirection: string;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeState(state: string): void {
+    this.swipeDirection = state;
   }
 
 }
